@@ -1,0 +1,17 @@
+{
+    "name": "geovis-cloud-api-node",
+    "version": "0.1.0",
+    "description": "geovis-cloud-api node sdk",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^17.0.25"
+    },
+    "dependencies": {
+        "nanoid": "^4.0.0"
+    }
+}
