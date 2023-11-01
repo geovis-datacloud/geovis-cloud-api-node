@@ -2,6 +2,7 @@
 /src
 /test
 tsconfig.json
+*.ts
 
 # Logs
 logs
@@ -32,7 +33,6 @@ lerna-debug.log*
 *.tar
 *.zip
 *.txt
-*.md
 *.geojson
 *.png
 *.webp
