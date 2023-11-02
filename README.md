@@ -75,10 +75,7 @@ const header = geoSign.sign({
     method: 'GET',
     time: new Date(),
     body: '',
-    queryString: {
-        channel: 'channelId',
-        appId: 'appId',
-    }
+    queryString: 'channel=channelId&appId=appId',
 })
 // 签名返回内容
 // {
