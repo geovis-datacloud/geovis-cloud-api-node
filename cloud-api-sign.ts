@@ -9,7 +9,6 @@ type SignInputParameters = {
     }
     path: string
     queryString?: string
-    version?: string
 } & ({
     method: 'GET'
 } | {
@@ -19,7 +18,6 @@ type SignInputParameters = {
 
 type SignParameters = SignInputParameters & {
     body: string
-    version: string
     nonceStr: string
 }
 
@@ -30,7 +28,6 @@ type SignResult = {
 
 export class CloudApiSign {
     readonly defaultSignParams = {
-        version: 'v1',
         body: '',
         queryString: ''
     }
