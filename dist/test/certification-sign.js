@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const cloud_api_sign_1 = require("../cloud-api-sign");
-//  "secretId": "KWaLTdzNnKfsDgIVrAczCoDqU08",
-//     "secretKey": "HD9AT2U/hN+ra5iSPcccMXmq59EcRuRTrNM/Dk2Zp4m37YGwANYICfVPMcTVJzaDgeAfLN5ooUq/K6vIA92OpA=="
-const geoSign = new cloud_api_sign_1.DataCloudSign('KWaLTdzNnKfsDgIVrAczCoDqU08', 'HD9AT2U/hN+ra5iSPcccMXmq59EcRuRTrNM/Dk2Zp4m37YGwANYICfVPMcTVJzaDgeAfLN5ooUq/K6vIA92OpA==');
+const geoSign = new cloud_api_sign_1.CertificationSign('KWaLTdzNnKfsDgIVrAczCoDqU08', 'HD9AT2U/hN+ra5iSPcccMXmq59EcRuRTrNM/Dk2Zp4m37YGwANYICfVPMcTVJzaDgeAfLN5ooUq/K6vIA92OpA==');
 function createSignPrint(params) {
     const final = {
         ...params,
@@ -41,8 +39,8 @@ function createSignPrint(params) {
 }
 function pringGet() {
     createSignPrint({
-        base: 'https://api.geovisearth.com/passport',
-        path: `/datacloud/auth/phone`,
+        base: 'http://127.0.0.1:3096',
+        path: `/v1/cloudapi/certification/city`,
         header: {
             'Content-Type': 'application/json; charset=utf-8',
         },
@@ -52,10 +50,10 @@ function pringGet() {
         //     channel: 'db2d7faa-63cb-4a7e-833b-8b9d83a91dec',
         //     appId: 'fFJtM1EV9VacL-o_',
         // },
-        queryString: {
-            channel: '11560f93-1cab-482c-bff1-fece3ff14aed',
-            phone: '13008150017',
-        }
+        // queryString: {
+        //     channel: '11560f93-1cab-482c-bff1-fece3ff14aed',
+        //     phone: '13008150017',
+        // }
     });
 }
 pringGet();

@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentSign = exports.DataCloudSign = exports.CloudApiSign = void 0;
+exports.PaymentSign = exports.CertificationSign = exports.DataCloudSign = exports.CloudApiSign = void 0;
 // const  = require('crypto');
 const crypto = __importStar(require("crypto"));
 const nanoid_1 = require("nanoid");
@@ -31,7 +31,6 @@ class CloudApiSign {
     secretId;
     serviceName;
     defaultSignParams = {
-        version: 'v1',
         body: '',
         queryString: ''
     };
@@ -50,7 +49,7 @@ class CloudApiSign {
         const final = Object.assign({
             nonceStr: (0, nanoid_1.nanoid)()
         }, this.defaultSignParams, params);
-        // console.log('final sign params', final)
+        console.log('final sign params', final);
         const timestamp = final.time.getTime();
         // ************* 步骤 1：拼接规范请求串 *************
         const canonicalRequest = `${this.serviceName}\n${final.method}\n${final.path}\n${final.queryString}\n${final.body}\n${final.nonceStr}\n${timestamp}`;
@@ -82,6 +81,14 @@ class DataCloudSign extends CloudApiSign {
     }
 }
 exports.DataCloudSign = DataCloudSign;
+class CertificationSign extends CloudApiSign {
+    secretId;
+    constructor(secretId, secretKey) {
+        super(secretId, secretKey, 'geovis-certification');
+        this.secretId = secretId;
+    }
+}
+exports.CertificationSign = CertificationSign;
 class PaymentSign extends CloudApiSign {
     secretId;
     mchid;

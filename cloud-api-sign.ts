@@ -53,7 +53,7 @@ export class CloudApiSign {
         const final: SignParameters = Object.assign({
             nonceStr: nanoid()
         }, this.defaultSignParams, params)
-        // console.log('final sign params', final)
+        console.log('final sign params', final)
         const timestamp = final.time.getTime()
         // ************* 步骤 1：拼接规范请求串 *************
         const canonicalRequest = `${this.serviceName}\n${final.method}\n${final.path}\n${final.queryString}\n${final.body}\n${final.nonceStr}\n${timestamp}`
@@ -85,6 +85,15 @@ export class DataCloudSign extends CloudApiSign {
         secretKey: string,
     ) {
         super(secretId, secretKey, 'geovis-data-cloud')
+    }
+}
+
+export class CertificationSign extends CloudApiSign {
+    constructor(
+        public readonly secretId: string,
+        secretKey: string,
+    ) {
+        super(secretId, secretKey, 'geovis-certification')
     }
 }
 

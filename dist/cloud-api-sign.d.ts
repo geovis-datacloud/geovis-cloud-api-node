@@ -8,7 +8,6 @@ type SignInputParameters = {
     };
     path: string;
     queryString?: string;
-    version?: string;
 } & ({
     method: 'GET';
 } | {
@@ -22,7 +21,6 @@ export declare class CloudApiSign {
     readonly secretId: string;
     readonly serviceName: string;
     readonly defaultSignParams: {
-        version: string;
         body: string;
         queryString: string;
     };
@@ -35,6 +33,10 @@ export declare class CloudApiSign {
     createSign(data: string, encoding?: crypto.BinaryToTextEncoding): string | Buffer;
 }
 export declare class DataCloudSign extends CloudApiSign {
+    readonly secretId: string;
+    constructor(secretId: string, secretKey: string);
+}
+export declare class CertificationSign extends CloudApiSign {
     readonly secretId: string;
     constructor(secretId: string, secretKey: string);
 }

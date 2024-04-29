@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const cloud_api_sign_1 = require("../cloud-api-sign");
-const geoSign = new cloud_api_sign_1.PaymentSign('secretId', 'oL9Ebg3ofo9pyaB42KMokWzc0SMQQeLjFkVF33U6N1M=', 'mchid');
+const geoSign = new cloud_api_sign_1.PaymentSign("sCx7-dtUrZQIQY5Zvkkn3TVALrU", "9Q1LxWRiRnmO0cb/k25ZndKP7q76bAxt6vIY40Q/OHI7GiSbTJkgZCLL4+kLGK8yRjpj13g12f5/Y7zdunxuKg==", 'QV5MGMKCM7MBAE1WZKFHKQTK');
 function createSignPrint(params, send = false) {
     const final = {
         ...params,
@@ -21,7 +21,7 @@ function createSignPrint(params, send = false) {
     final.path = params.path;
     const header = geoSign.sign(final);
     if (send) {
-        fetch(`${params.base}${params.path}`, {
+        fetch(`${params.base}${path}`, {
             method: final.method,
             headers: header,
             body: final.method !== 'GET' ? final.body : undefined,
@@ -46,7 +46,7 @@ function createSignPrint(params, send = false) {
             curlcmd += ` -H "${k}: ${v}" `;
         });
         final.method !== 'GET' && (curlcmd += ` -d '${final.body ?? ''}'`);
-        curlcmd += ` ${params.base}${params.path}`;
+        curlcmd += ` ${params.base}${path}`;
         console.log(`****************************************************curl print`);
         console.log(curlcmd);
     }
@@ -54,27 +54,28 @@ function createSignPrint(params, send = false) {
 }
 function pringGet() {
     const params = {
-        base: 'http://127.0.0.1:3001',
-        path: '/v1/access/prepay',
+        base: 'https://api1.geovisearth.com/pay',
+        path: '/v2/access/orderDetail',
         header: {
             'Content-Type': 'application/json'
         },
-        method: 'POST',
+        method: 'GET',
         time: new Date(),
-        body: {
-            orderNo: [1, 2, 3].map(() => Math.trunc(Math.random() * 1000000000)).join(''),
-            productName: "测试验签工具",
-            total: 10000,
+        // body: {
+        //     orderNo:  [1, 2, 3].map(() => Math.trunc(Math.random() * 1000000000)).join(''),
+        //     // productName: "测试验签工具",
+        //     // total: 10000,
+        //     payMode: 'wxpay',
+        //     // payChannel: 'TRANSFER',
+        //     // callbackUrl: 'http://www.baidu.com?ad=12',
+        //     // returnUrl: 'http://www.baidu.com?ad=12',
+        //     // userId: '111111111111111111111111111111',
+        // },
+        queryString: {
+            orderNo: 'JjE8tKL7F3EhffrKd0p7dgfQItoeqx0n', // [1, 2, 3].map(() => Math.trunc(Math.random() * 1000000000)).join(''),
             payMode: 'wxpay',
-            payChannel: 'NATIVE',
-            callbackUrl: 'http://www.baidu.com?ad=12'
         }
-        // queryString: {
-        //     a: 1,
-        //     b: 2,
-        //     c: 3,
-        // }
     };
-    createSignPrint(params);
+    createSignPrint(params, true);
 }
 pringGet();
