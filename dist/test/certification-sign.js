@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const cloud_api_sign_1 = require("../cloud-api-sign");
-const geoSign = new cloud_api_sign_1.CertificationSign('KWaLTdzNnKfsDgIVrAczCoDqU08', 'HD9AT2U/hN+ra5iSPcccMXmq59EcRuRTrNM/Dk2Zp4m37YGwANYICfVPMcTVJzaDgeAfLN5ooUq/K6vIA92OpA==');
+const geoSign = new cloud_api_sign_1.CertificationSign("your secretId", "your secretKey");
 function createSignPrint(params) {
     const final = {
         ...params,
@@ -39,21 +39,17 @@ function createSignPrint(params) {
 }
 function pringGet() {
     createSignPrint({
-        base: 'http://127.0.0.1:3096',
-        path: `/v1/cloudapi/certification/city`,
+        base: 'https://cert.geovisearth.com',
+        path: `/v1/cloudapi/user/status`,
         header: {
             'Content-Type': 'application/json; charset=utf-8',
         },
         method: 'GET',
         time: new Date(),
-        // body: {
-        //     channel: 'db2d7faa-63cb-4a7e-833b-8b9d83a91dec',
-        //     appId: 'fFJtM1EV9VacL-o_',
-        // },
-        // queryString: {
-        //     channel: '11560f93-1cab-482c-bff1-fece3ff14aed',
-        //     phone: '13008150017',
-        // }
+        queryString: {
+            channel: 'your channel',
+            phone: 'which user you want to search',
+        }
     });
 }
 pringGet();

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const cloud_api_sign_1 = require("../cloud-api-sign");
-const geoSign = new cloud_api_sign_1.PaymentSign("sCx7-dtUrZQIQY5Zvkkn3TVALrU", "9Q1LxWRiRnmO0cb/k25ZndKP7q76bAxt6vIY40Q/OHI7GiSbTJkgZCLL4+kLGK8yRjpj13g12f5/Y7zdunxuKg==", 'QV5MGMKCM7MBAE1WZKFHKQTK');
+const geoSign = new cloud_api_sign_1.PaymentSign("your secretId", "your secretKey", 'your mchid');
 function createSignPrint(params, send = false) {
     const final = {
         ...params,
@@ -72,7 +72,7 @@ function pringGet() {
         //     // userId: '111111111111111111111111111111',
         // },
         queryString: {
-            orderNo: 'JjE8tKL7F3EhffrKd0p7dgfQItoeqx0n', // [1, 2, 3].map(() => Math.trunc(Math.random() * 1000000000)).join(''),
+            orderNo: [1, 2, 3].map(() => Math.trunc(Math.random() * 1000000000)).join(''),
             payMode: 'wxpay',
         }
     };
